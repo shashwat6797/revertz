@@ -1,5 +1,5 @@
 // src/users/users.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -15,5 +15,11 @@ export class UsersService {
   create(createUserDto: CreateUserDto) {
     const user = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(user);
+  }
+
+  async getUser(id: string) {
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) throw new NotFoundException(`User with id ${id} not found`);
+    return user;
   }
 }
