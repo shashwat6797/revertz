@@ -1,0 +1,13 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Workspace / AI tooling
+.codex
+
+# Logs
+*.log
+
+# Editor backups
+*.swp
+*~
